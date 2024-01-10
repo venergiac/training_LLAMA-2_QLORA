@@ -1,0 +1,18 @@
+version: '3.2'
+services:
+  pytorch-cuda:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    ports:
+      - 8888:8888
+    volumes:
+      - './:/workspace'
+    image: pytorch-cuda
+    container_name: pytorch-cuda
